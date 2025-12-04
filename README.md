@@ -5,7 +5,7 @@
 This is a full-stack Retrieval-Augmented Generation (RAG) system.
 It allows ingestion of raw datasets and provides a user-facing chat interface for querying the data.
 
-* **Ingestion Pipeline:** Reads CSV/SQLite from `./data`, cleans text, generates embeddings, and stores them in ChromaDB (`./chroma_db`).
+* **Ingestion Pipeline:** Reads CSV from `./data`, cleans text, generates embeddings, and stores them in ChromaDB (`./chroma_db`).
   **Note:** To ingest data, run `ingestion_pipeline\main.py`.
 * **Chat UI:** A Gradio interface that retrieves relevant context from ChromaDB and generates natural language answers using an LLM.
 
