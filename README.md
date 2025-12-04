@@ -6,6 +6,7 @@ This is a full-stack Retrieval-Augmented Generation (RAG) system.
 It allows ingestion of raw datasets and provides a user-facing chat interface for querying the data.
 
 * **Ingestion Pipeline:** Reads CSV/SQLite from `./data`, cleans text, generates embeddings, and stores them in ChromaDB (`./chroma_db`).
+  **Note:** To ingest data, run `ingestion_pipeline\main.py`.
 * **Chat UI:** A Gradio interface that retrieves relevant context from ChromaDB and generates natural language answers using an LLM.
 
 ---
@@ -24,7 +25,7 @@ docker-compose up --build
 
 Access the services:
 
-* **Chat UI (Gradio):** http://127.0.0.1:7860
+* **Chat UI (Gradio):** [http://127.0.0.1:7860](http://127.0.0.1:7860)
 
 Or run locally without Docker:
 
@@ -53,18 +54,12 @@ python app.py
 * Using `sentence-transformers/all-MiniLM-L6-v2`.
 * **Reason:** Lightweight, fast, and produces high-quality embeddings suitable for semantic search on moderate-sized datasets.
 
- 3. LLM Approach
-
-* By default, the system uses OpenAI API for natural language generation.
-* **Reason:** Provides high-quality responses without needing heavy local models.
-* **Optional:** Can be replaced with a local LLM for offline usage or environments without internet.
 ### 3. LLM Approach
 
 * By default, the system uses OpenRouter as the LLM gateway, with the model qwen/qwen-2.5-72b-instruct configured as the primary model.
-
 * **Reason:** This allows flexible access to multiple high-quality models without vendor lock-in, while keeping latency and cost efficient.
-
 * **Optional:** You can switch to OpenAI models or any other provider supported by OpenRouter by updating the environment variables or the setup.py configuration.
+
 ---
 
 ## Notes
@@ -72,3 +67,4 @@ python app.py
 * Data is stored persistently in `./chroma_db`.
 * Raw datasets should be placed in the `./data` folder.
 * The system is containerized for easy deployment; simply running `docker-compose up --build` starts everything.
+* **Remember:** To ingest or re-ingest data, run `python ingestion_pipeline\main.py`.
