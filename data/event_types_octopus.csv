@@ -1,0 +1,5 @@
+EventTypeID,Name,Category,SystemCode,SystemGUID
+1,Door Forced Open,Access Control,AC-DFO,7fd45022-6917-4ef1-96fa-5b88782436b8
+2,Fire Detected,Fire Safety,FS-FIRE,7d88f0a5-5934-491c-b86d-852497e2ba30
+3,Unauthorized Entry,Security,SEC-UNAUTH,e01ddb8f-ea73-4b99-b6f8-2afb6ccdc6af
+4,Camera Offline,Video,VID-OFF,5fa8f1fd-c771-49a7-a86f-494fcb7220ee

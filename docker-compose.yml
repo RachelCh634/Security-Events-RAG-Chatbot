@@ -1,0 +1,42 @@
+version: "3.9"
+
+services:
+  chroma:
+    image: ghcr.io/chroma-core/chroma:latest
+    container_name: chroma
+    ports:
+      - "8000:8000"
+    volumes:
+      - ./chroma_db:/chroma
+
+  ingestion:
+    build:
+      context: .
+      dockerfile: ingestion_pipeline/Dockerfile
+    container_name: ingestion
+    depends_on:
+      - chroma
+    environment:
+      CHROMA_URL: "http://chroma:8000"
+      OPENROUTER_API_KEY: ${OPENROUTER_API_KEY}
+      APP_BASE_DIR: "/app"
+    volumes:
+      - ./data:/app/data
+      - ./chroma_db:/app/chroma_db
+
+  rag_ui:
+    build:
+      context: .
+      dockerfile: rag_system/Dockerfile
+    container_name: rag_ui
+    ports:
+      - "7860:7860"
+    depends_on:
+      - chroma
+      - ingestion
+    environment:
+      CHROMA_URL: "http://chroma:8000"
+      OPENROUTER_API_KEY: ${OPENROUTER_API_KEY}
+    volumes:
+      - ./data:/app/data
+      - ./chroma_db:/app/chroma_db

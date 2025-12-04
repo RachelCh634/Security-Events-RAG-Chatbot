@@ -1,0 +1,11 @@
+venv/
+chat-bot/
+__pycache__/
+*.pyc
+.env
+chroma_db/
+.vscode/
+.idea/
+*.swp
+chroma_db/
+/chroma_db
